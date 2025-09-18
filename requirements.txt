@@ -1,0 +1,10 @@
+datasets
+pandas
+numpy
+scikit-learn
+matplotlib
+seaborn
+arabicstopwords
+nltk
+transformers
+jupyter
