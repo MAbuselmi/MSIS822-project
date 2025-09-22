@@ -7,11 +7,16 @@ print("Original dataset")
 ds = load_dataset("KFUPM-JRCAI/arabic-generated-abstracts")
 print("Available splits:", list(ds.keys()))
 
-split_name = list(ds.keys())[0]
-df = ds[split_name].to_pandas()
+# Combine all splits into one dataframe
+dfs = []
+for split in ds.keys():
+    temp_df = ds[split].to_pandas()
+    dfs.append(temp_df)
+
+df = pd.concat(dfs, ignore_index=True)
 print("Original dataset shape:", df.shape)
 
-# Save original data to raw dataset
+# Save original data to raw dataset (keep all columns)
 raw_path = "data/raw/arabic_generated_abstracts.csv"
 df.to_csv(raw_path, index=False, encoding="utf-8-sig")
 print(f" Raw dataset saved to {raw_path}")
@@ -41,8 +46,8 @@ for col in ai_cols:
 
 ai = pd.concat(ai_list, ignore_index=True)
 
-# Combine
-final_df = pd.concat([human, ai], ignore_index=True)
+# Combine into final dataset (only text + label)
+final_df = pd.concat([human, ai], ignore_index=True)[["text", "label"]]
 print("Combined dataset shape:", final_df.shape)
 print(final_df.head())
 
