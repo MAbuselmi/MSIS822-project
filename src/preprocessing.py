@@ -1,4 +1,3 @@
-# Preprocessing functions will go here
 
 do_stemming=False
 import re
@@ -6,12 +5,10 @@ from typing import List, Iterable, Set, Optional
 from nltk.stem.isri import ISRIStemmer
 
 
-# Arabic diacritics (harakat)
 ARABIC_DIACRITICS_PATTERN = re.compile(
     r"[\u0610-\u061A\u064B-\u065F\u06D6-\u06DC\u06DF-\u06E8\u06EA-\u06ED]"
 )
 
-# Basic punctuation (Arabic + English)
 PUNCTUATION_PATTERN = re.compile(
     r"["
     r"\u060C"  # ،
@@ -26,10 +23,8 @@ PUNCTUATION_PATTERN = re.compile(
     r"]"
 )
 
-# Digits (Arabic + English)
 DIGITS_PATTERN = re.compile(r"[\d\u0660-\u0669]+")
 
-# Normalize Arabic letters
 ARABIC_NORMALIZATION_MAP = {
     "أ": "ا",
     "إ": "ا",
@@ -90,10 +85,6 @@ def remove_stopwords(tokens: Iterable[str], stopwords: Optional[Set[str]] = None
     return [t for t in tokens if t not in stopwords]
 
 
-# =========================
-#   ISRI stemming
-# =========================
-
 try:
     _ISRI_STEMMER = ISRIStemmer()
 except Exception:
@@ -108,10 +99,6 @@ def stem_tokens(tokens: Iterable[str], use_isri: bool = True) -> List[str]:
     return [_ISRI_STEMMER.stem(t) for t in tokens]
 
 
-# =========================
-#   Full pipeline
-# =========================
-
 def preprocess_text(
         text: str,
         stopwords: Optional[Set[str]] = None,
@@ -124,7 +111,6 @@ def preprocess_text(
         do_stemming: bool = False,
         return_tokens: bool = False,
 ):
-    """Full Arabic preprocessing pipeline."""
 
     if not isinstance(text, str):
         text = "" if text is None else str(text)
