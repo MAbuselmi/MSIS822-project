@@ -96,10 +96,7 @@ This project demonstrates that simple stylometric features, when combined with t
 The results emphasize the value of linguistic insight and model interpretability in AI-text detection.
 
 ---
-# Author
-## Author
-Mohammed Abuselmi  
-## Author
+ ## Author
 Mohammed Abuselmi  
 Master’s Student in Big Data Analytics  
 Department of Information Systems  
