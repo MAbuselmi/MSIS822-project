@@ -1,0 +1,21 @@
+# Core
+python>=3.9
+
+# Data handling
+numpy>=1.23
+pandas>=1.5
+
+# Machine Learning
+scikit-learn>=1.2
+joblib>=1.2
+
+# Visualization
+matplotlib>=3.6
+wordcloud>=1.8
+
+# NLP (Arabic)
+nltk>=3.8
+camel-tools>=1.5
+
+# Utilities
+tqdm>=4.64
